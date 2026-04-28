@@ -46,14 +46,17 @@ AI agents often work, but their behavior can be inconsistent or hard to control 
 ### 🏫 Getting started in a guided session
 
 To get started in a guided lab session:
-- <!-- step 1 -->
-
+- Open this repo in the GitHub Codespace your facilitator prepared — the link will be provided at the start of the lab
+- 
+- Open `src/01-introduction-setup.ipynb` and follow the instructions from there
 
 ### 🏠 Getting started in your own environment
 
 If you're following these steps at your own pace:
 - Clone this repository
-- Set up your development environment
+- Run the script /get.env to update your .env variables and /rft tosubmit your fine tuning job
+- Install dependencies: `pip install -r src/requirements.txt`
+- Open `src/01-introduction-setup.ipynb` to begin
 
 ### 🧠 Learning Outcomes
 
@@ -86,6 +89,8 @@ Use these as a starting point — or write your own!
 | Resource | Description |
 |:---------|:------------|
 | [https://aka.ms/build26-next-steps](https://aka.ms/build26-next-steps) | Take the next step in your learning journey after Build 2026 |
+| [Facilitator Setup Guide](docs/facilitator-setup.md) | Pre-session checklist: deploy models, tool endpoints, and prepare participant environments |
+| [RFT Lessons Learned](docs/rft-lessons-learned.md) | Hard-won lessons from building the agentic RFT pipeline — grader selection, partial credit, checkpoint evaluation, and more |
 
 
 ### 🌟 Microsoft Learn MCP Server

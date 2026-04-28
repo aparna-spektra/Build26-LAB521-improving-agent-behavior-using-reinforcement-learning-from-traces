@@ -1,16 +1,19 @@
 # /docs
 
-This folder is for documentation and step-by-step content for your session.
+This folder contains documentation for the **LAB 521: Improving Agent Behavior Using Reinforcement Learning from Traces** lab.
 
-## What goes here
+## Contents
 
-- **Labs/Workshops**: Step-by-step instructions organized into numbered exercises (e.g., `01-setup/`, `02-first-exercise/`)
-- **Demos**: Walkthrough documentation explaining the demo code in `/src`
-- **Breakouts**: Supplementary documentation, diagrams, or reference material
+| File | Description |
+|------|-------------|
+| [facilitator-setup.md](facilitator-setup.md) | Pre-session checklist for facilitators: deploy models and tool endpoints, prepare participant environments, session timeline, and common issues |
+| [rft-lessons-learned.md](rft-lessons-learned.md) | Hard-won lessons from building the agentic RFT pipeline — grader selection, partial credit scoring, checkpoint evaluation, and known pitfalls |
+| [bug-reports.md](bug-reports.md) | Platform bug reports filed during lab development, including workarounds |
 
-## Tips
+## For facilitators
 
-- Use numbered prefixes for ordering: `01-setup/`, `02-exercise/`, `03-wrap-up/`
-- Each subfolder can have its own `README.md` or `index.md`
-- Keep images in an `assets/` subfolder if needed
-- If your session doesn't have documentation beyond the README, feel free to remove this folder
+Start with [facilitator-setup.md](facilitator-setup.md) — it covers everything you need to do before the session, including deploying `o4-mini`, the Zava tool endpoint, and pre-running training jobs.
+
+## For self-paced learners
+
+The lab notebooks in `/src/` are self-contained. See the main [README](../README.md) for getting-started instructions.
