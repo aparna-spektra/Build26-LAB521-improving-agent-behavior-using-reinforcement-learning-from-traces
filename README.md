@@ -37,33 +37,35 @@ Once your content is in the repo, use these three phrases with Copilot to build 
 
 # [Microsoft Build 2026](https://build.microsoft.com)
 
-## 🔥 BRKXXX: SESSION TITLE
+## 🔥 LAB 521: Improving Agent Behavior Using Reinforcement Learning from Traces
 
 ### Session Description
 
-*Add Session Description*
+AI agents often work, but their behavior can be inconsistent or hard to control with prompts alone. In this hands-on lab, you will start with a working agent, inspect execution traces, define "good behavior" using evaluation graders, and apply reinforcement learning to reinforce better decisions. By the end, you'll have a practical workflow for improving agent behavior using feedback from agent runs, without redesigning your agent from scratch.
 
 ### 🏫 Getting started in a guided session
 
 To get started in a guided lab session:
-- <!-- step 1 -->
-- <!-- step 2 -->
-- <!-- step 3 -->
+- Open this repo in the GitHub Codespace your facilitator prepared — the link will be provided at the start of the lab
+- Run the script /get.env to update your .env variables and /rft tosubmit your fine tuning job
+- Open `src/01-introduction-setup.ipynb` and follow the instructions from there
 
 ### 🏠 Getting started in your own environment
 
 If you're following these steps at your own pace:
 - Clone this repository
-- Set up your development environment
-- <!-- step 3 -->
+- Run the script /get.env to update your .env variables and /rft tosubmit your fine tuning job
+- Install dependencies: `pip install -r src/requirements.txt`
+- Open `src/01-introduction-setup.ipynb` to begin
 
 ### 🧠 Learning Outcomes
 
-By the end of this session, you will be able to:
+By the end of this lab, you will be able to:
 
-- <!-- outcome 1 -->
-- <!-- outcome 2 -->
-- <!-- outcome 3 -->
+- Understand how reinforcement fine-tuning (RFT) improves agentic tool-calling behavior without redesigning the agent
+- Inspect agent execution traces and define "good behavior" using evaluation graders with partial credit scoring
+- Build training data from agent runs and submit an RFT fine-tuning job
+- Evaluate checkpoints to identify the best-performing fine-tuned model
 
 ### 💬 Keep Learning with Copilot
 
@@ -77,15 +79,18 @@ Use these as a starting point — or write your own!
 
 ### 💻 Technologies Used
 
-1. <!-- technology 1 -->
-1. <!-- technology 2 -->
-1. <!-- technology 3 -->
+1. Microsoft Foundry
+1. OpenAI o4-mini
+1. Python (Jupyter notebooks)
+1. Reinforcement fine-tuning (RFT)
 
 ### 📚 Resources and Next Steps
 
 | Resource | Description |
 |:---------|:------------|
 | [https://aka.ms/build26-next-steps](https://aka.ms/build26-next-steps) | Take the next step in your learning journey after Build 2026 |
+| [Facilitator Setup Guide](docs/facilitator-setup.md) | Pre-session checklist: deploy models, tool endpoints, and prepare participant environments |
+| [RFT Lessons Learned](docs/rft-lessons-learned.md) | Hard-won lessons from building the agentic RFT pipeline — grader selection, partial credit, checkpoint evaluation, and more |
 
 
 ### 🌟 Microsoft Learn MCP Server
@@ -100,17 +105,17 @@ For more information, setup instructions for other dev clients, and to post comm
 
 ## Content Owners
 
-<!-- TODO: Add yourself as a content owner
-1. Change the src in the image tag to {your github url}.png
-2. Change INSERT NAME HERE to your name
-3. Change the github url in the final href to your url. -->
-
 <table>
 <tr>
-    <td align="center"><a href="http://github.com/yourGitHubHandle">
-        <img src="https://github.com/yourGitHubHandle.png" width="100px;" alt="INSERT NAME HERE"/><br />
-        <sub><b>INSERT NAME HERE</b></sub></a><br />
-            <a href="https://github.com/yourGitHubHandle" title="talk">📢</a>
+    <td align="center"><a href="http://github.com/aliciaframe">
+        <img src="https://github.com/aliciaframe.png" width="100px;" alt="Alicia Frame"/><br />
+        <sub><b>Alicia Frame</b></sub></a><br />
+            <a href="https://github.com/aliciaframe" title="talk">📢</a>
+    </td>
+    <td align="center"><a href="http://github.com/bethanyjep">
+        <img src="https://github.com/bethanyjep.png" width="100px;" alt="Bethany Jepchumba"/><br />
+        <sub><b>Bethany Jepchumba</b></sub></a><br />
+            <a href="https://github.com/bethanyjep" title="talk">📢</a>
     </td>
 </tr></table>
 
