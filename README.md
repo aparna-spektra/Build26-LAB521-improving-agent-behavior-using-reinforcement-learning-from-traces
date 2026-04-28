@@ -47,7 +47,7 @@ AI agents often work, but their behavior can be inconsistent or hard to control 
 
 To get started in a guided lab session:
 - Open this repo in the GitHub Codespace your facilitator prepared — the link will be provided at the start of the lab
-- 
+- Run the script /get.env to update your .env variables and /rft tosubmit your fine tuning job
 - Open `src/01-introduction-setup.ipynb` and follow the instructions from there
 
 ### 🏠 Getting started in your own environment
