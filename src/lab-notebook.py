@@ -9,7 +9,7 @@
 #
 # | Section | What You'll Do | Time |
 # |---------|---------------|------|
-# | 1. Setup | Connect to Azure AI Foundry | 5 min |
+# | 1. Setup | Connect to Microsoft Foundry | 5 min |
 # | 2. Meet the Agent | Run the agent live, see tool calling in action | 10 min |
 # | 3. Baseline | Evaluate base o4-mini on 30 scenarios | 10 min |
 # | 4. The Grader | Understand how RFT scores the model's responses | 5 min |
@@ -19,14 +19,14 @@
 # | 8. Evaluate | Compare the fine-tuned model head-to-head with base | 10 min |
 # | 9. Wrap-Up | Key takeaways and next steps | 5 min |
 #
-# > **Prerequisites**: Python 3.10+, an Azure AI Foundry project with o4-mini deployed.
+# > **Prerequisites**: Python 3.10+, an Microsoft Foundry project with o4-mini deployed.
 # > Your facilitator has pre-deployed the tool endpoints and fine-tuned models.
 
 # %% [markdown]
 # ---
 # ## 1. Setup (5 min)
 #
-# Connect to your Azure AI Foundry project. Your `.env` file should contain:
+# Connect to your Microsoft Foundry project. Your `.env` file should contain:
 # ```
 # AZURE_OPENAI_ENDPOINT=https://<your-resource>.services.ai.azure.com/api/projects/<your-project>/openai/v1/
 # AZURE_OPENAI_API_KEY=<your-key>

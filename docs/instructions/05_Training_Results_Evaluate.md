@@ -11,7 +11,7 @@ In this section, you'll analyze the training reward curve from a completed RFT r
 ## Step 1: Open the Notebook
 
 1. Open **`src/05-training-results-evaluate.ipynb`** in VS Code.
-2. Run the **Setup** cell to reconnect to Azure AI Foundry and reload the agent infrastructure.
+2. Run the **Setup** cell to reconnect to Microsoft Foundry and reload the agent infrastructure.
 
 ## Step 2: Plot the Reward Curve
 

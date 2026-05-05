@@ -8,7 +8,7 @@ In this section, you'll measure how well the base model performs on Zava's retur
 ## Step 1: Open the Notebook
 
 1. Open **`src/03-baseline-grader.ipynb`** in VS Code.
-2. Run the **Setup** cell to reconnect to Azure AI Foundry and reload the agent infrastructure.
+2. Run the **Setup** cell to reconnect to Microsoft Foundry and reload the agent infrastructure.
 
 ## Step 2: Understand the Grader
 
