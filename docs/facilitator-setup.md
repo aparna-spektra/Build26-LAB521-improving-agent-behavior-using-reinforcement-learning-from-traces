@@ -2,7 +2,7 @@
 
 ## Pre-work Checklist (do before the session)
 
-### 1. Azure AI Foundry Project
+### 1. Microsoft Foundry Project
 - [ ] Create resource: `ignite-agenticft-lab-resource` (or similar)
 - [ ] Deploy `o4-mini` (Standard, 50K TPM)
 - [ ] Note the endpoint URL and API key

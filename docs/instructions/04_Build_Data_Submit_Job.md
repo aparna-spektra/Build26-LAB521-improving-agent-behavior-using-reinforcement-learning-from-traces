@@ -3,12 +3,12 @@
 > [!NOTE]
 > **Notebook**: `src/04-build-data-submit-job.ipynb` | **Estimated time**: ~15 minutes
 
-In this section, you'll explore the RFT training data format, construct a custom training example from scratch, and submit a real fine-tuning job to Azure AI Foundry.
+In this section, you'll explore the RFT training data format, construct a custom training example from scratch, and submit a real fine-tuning job to Microsoft Foundry.
 
 ## Step 1: Open the Notebook
 
 1. Open **`src/04-build-data-submit-job.ipynb`** in VS Code.
-2. Run the **Setup** cell to reconnect to Azure AI Foundry and reload the agent infrastructure.
+2. Run the **Setup** cell to reconnect to Microsoft Foundry and reload the agent infrastructure.
 
 ## Step 2: Explore the RFT Data Format
 
@@ -57,7 +57,7 @@ Run the **Build Your Own Example** section. This is an interactive exercise:
 
 ## Step 4: Upload Files
 
-Run the **Upload Files** cell to upload the pre-built training and validation datasets to Azure AI Foundry.
+Run the **Upload Files** cell to upload the pre-built training and validation datasets to Microsoft Foundry.
 
 The cell will return file IDs for both files. These IDs are used in the subsequent job submission step.
 
@@ -66,7 +66,7 @@ The cell will return file IDs for both files. These IDs are used in the subseque
 
 ## Step 5: Define the Grader for the Training Job
 
-Run the **Define the Grader** cell. This embeds the same Python grader function you used for local evaluation as a string — the Azure AI Foundry training service executes this grader on each model rollout during training.
+Run the **Define the Grader** cell. This embeds the same Python grader function you used for local evaluation as a string — the Microsoft Foundry training service executes this grader on each model rollout during training.
 
 The grader string must define a `grade(sample, item)` function:
 - `sample` — the training example (contains `expected_resolution`)

@@ -1,6 +1,6 @@
 # RFT Platform Bug Reports
 
-Tracking issues encountered during agentic RFT experiments on Azure AI Foundry.
+Tracking issues encountered during agentic RFT experiments on Microsoft Foundry.
 
 ---
 

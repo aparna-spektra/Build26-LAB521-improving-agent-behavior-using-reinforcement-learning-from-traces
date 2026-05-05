@@ -17,10 +17,10 @@ The agent works as follows:
 ## Step 1: Open the Notebook
 
 1. In the VS Code Explorer (`src/` folder), open **`02-meet-the-agent.ipynb`**.
-2. Run the **Setup** cell at the top to reconnect to Azure AI Foundry.
+2. Run the **Setup** cell at the top to reconnect to Microsoft Foundry.
 
 > [!NOTE]
-> Each notebook re-establishes its own connection to Azure AI Foundry. This is expected — run the setup cell at the top of each notebook before working through the rest.
+> Each notebook re-establishes its own connection to Microsoft Foundry. This is expected — run the setup cell at the top of each notebook before working through the rest.
 
 ## Step 2: Read the Zava Return Policy
 

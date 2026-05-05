@@ -58,7 +58,7 @@ To launch a codespace you need a **GitHub account**. Follow the instructions bel
 
 ## Login to Azure
 
-In the GitHub Codespace, open a new terminal (**Terminal → New Terminal**) and run the setup script to populate your `.env` file with your Azure AI Foundry credentials:
+In the GitHub Codespace, open a new terminal (**Terminal → New Terminal**) and run the setup script to populate your `.env` file with your Microsoft Foundry credentials:
 
 ```bash
 /get.env
@@ -76,7 +76,7 @@ AZURE_OPENAI_API_KEY=<your-key>
 ```
 
 > [!TIP]
-> You can find your Azure AI Foundry endpoint and API key in the **Resources tab** of your Skillable environment.
+> You can find your Microsoft Foundry endpoint and API key in the **Resources tab** of your Skillable environment.
 
 > [!WARNING]
 > Never commit your `.env` file to version control. It is already listed in `.gitignore` for this repo.
@@ -125,7 +125,7 @@ Once your Codespace is open and your `.env` file is configured:
 Work through the cells in `01-introduction-setup.ipynb` in order:
 
 1. **Install dependencies** — Installs required Python packages (`openai`, `python-dotenv`, `requests`, `matplotlib`, `tabulate`). This may take 1–2 minutes.
-2. **Import libraries and connect to Azure AI Foundry** — Loads your `.env` file and creates an OpenAI client pointed at your Azure AI Foundry endpoint.
+2. **Import libraries and connect to Microsoft Foundry** — Loads your `.env` file and creates an OpenAI client pointed at your Microsoft Foundry endpoint.
 3. **Verify your environment** — Confirms all required environment variables are set and that the data files exist.
 
 > [!NOTE]

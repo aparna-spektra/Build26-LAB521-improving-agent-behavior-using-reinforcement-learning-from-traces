@@ -1,6 +1,6 @@
 # Agentic RFT Lessons Learned
 
-Hard-won lessons from building an agentic RFT pipeline for a Zava retail tool-calling task on Azure AI Foundry.
+Hard-won lessons from building an agentic RFT pipeline for a Zava retail tool-calling task on Microsoft Foundry.
 
 ## 1. Always Baseline Before Training
 

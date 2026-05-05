@@ -9,19 +9,19 @@ By the end of this lab, you should be able to:
 
 - Understand how reinforcement fine-tuning (RFT) improves agentic tool-calling behavior without redesigning the agent
 - Inspect agent execution traces and define "good behavior" using evaluation graders with partial credit scoring
-- Build training data from agent runs and submit an RFT fine-tuning job to Azure AI Foundry
+- Build training data from agent runs and submit an RFT fine-tuning job to Microsoft Foundry
 - Evaluate checkpoints to identify the best-performing fine-tuned model
 
 ## Resources
 
 > [!TIP]
-> You can find your Azure AI Foundry endpoint, API key, and any other credentials in the **Resources tab** provided by your facilitator.
+> You can find your Microsoft Foundry endpoint, API key, and any other credentials in the **Resources tab** provided by your facilitator.
 
 ## Lab Outline
 
 The lab is organized into **5 notebooks**, taking you through the full RFT workflow:
 
-1. **Introduction & Setup** — Connect to Azure AI Foundry and verify your environment
+1. **Introduction & Setup** — Connect to Microsoft Foundry and verify your environment
 2. **Meet the Agent** — Run Zava's return-resolution agent live on real scenarios and observe its tool-calling behavior
 3. **Baseline & Grader** — Evaluate the base model, understand how the grader drives RFT learning, and calibrate the pass threshold
 4. **Build Data & Submit a Job** — Explore the RFT data format, craft a training example, and submit a real fine-tuning job
