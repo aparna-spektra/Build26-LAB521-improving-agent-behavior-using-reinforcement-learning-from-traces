@@ -6,55 +6,18 @@ load_dotenv(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file_
 from openai import OpenAI
 
 client = OpenAI(
-    base_url=os.environ["AZURE_OPENAI_ENDPOINT"],
+    base_url=os.environ["OPENAI_BASE_URL"],
     api_key=os.environ["AZURE_OPENAI_API_KEY"],
 )
 
 lab_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # ============================================================
-# Step 1: Upload v7 data files (always fresh to avoid stale refs)
+# Step 1: Use already-uploaded v7 data files
 # ============================================================
-train_path = os.path.join(lab_dir, "data", "rft_v7_train.jsonl")
-val_path   = os.path.join(lab_dir, "data", "rft_v7_val.jsonl")
-
-
-def fix_roles(jsonl_path):
-    """Return JSONL bytes with 'system' roles replaced by 'developer' (required for RFT)."""
-    lines = []
-    with open(jsonl_path) as f:
-        for line in f:
-            ex = json.loads(line)
-            for msg in ex.get("messages", []):
-                if msg.get("role") == "system":
-                    msg["role"] = "developer"
-            lines.append(json.dumps(ex))
-    return "\n".join(lines).encode()
-
-
-print("Uploading training file...")
-train_file = client.files.create(
-    file=("rft_v7_train.jsonl", fix_roles(train_path), "application/json"),
-    purpose="fine-tune",
-)
-train_id = train_file.id
-print(f"  train={train_id}")
-
-print("Uploading validation file...")
-val_file = client.files.create(
-    file=("rft_v7_val.jsonl", fix_roles(val_path), "application/json"),
-    purpose="fine-tune",
-)
-val_id = val_file.id
-print(f"  val={val_id}")
-
-# Wait for files to be processed before submitting jobs
-import time
-print("\nWaiting 60s for files to be processed...")
-for i in range(60, 0, -10):
-    print(f"  {i}s remaining...")
-    time.sleep(10)
-print("  ✅ Ready to submit.\n")
+train_id = "file-0d8cf472f692450ab9ad798bc4e915d8"
+val_id = "file-7c7789d5278549f099d81737a6aeb366"
+print(f"Using existing files: train={train_id}, val={val_id}")
 
 # ============================================================
 # Common config
@@ -160,60 +123,14 @@ experiments = [
 ]
 
 # ============================================================
-# Probe endpoint grader support
-# ============================================================
-def check_endpoint_grader_support():
-    """Returns True if endpoint graders are supported in this subscription/region."""
-    try:
-        client.fine_tuning.jobs.create(
-            model="o4-mini",
-            training_file=train_id,
-            validation_file=val_id,
-            suffix="_probe_delete_me",
-            method={"type": "reinforcement", "reinforcement": {
-                "grader": {"type": "endpoint", "name": "probe",
-                            "url": "https://zava-rft-tools.azurewebsites.net/grade",
-                            "pass_threshold": 0.5},
-                "tools": TOOLS,
-                "max_episode_steps": 1,
-                "hyperparameters": {"n_epochs": 1},
-            }},
-        )
-        return True  # unexpectedly succeeded
-    except Exception as e:
-        err = str(e)
-        if "not supported" in err.lower() and "endpoint" in err.lower():
-            return False
-        # Any other error (e.g. invalid file) means the endpoint grader itself
-        # was accepted — the failure is something else.
-        return True
-
-print("\nChecking endpoint grader support...")
-ENDPOINT_GRADER_SUPPORTED = check_endpoint_grader_support()
-if ENDPOINT_GRADER_SUPPORTED:
-    print("  ✅ Endpoint graders supported — will use as configured.")
-else:
-    print("  ⚠️  Endpoint graders NOT supported in this subscription/region.")
-    print("     Experiments using endpoint grader will fall back to python grader.")
-
-# ============================================================
 # Submit jobs (Python grader first, then endpoint)
 # ============================================================
 submitted = []
 
 for exp in experiments:
-    grader = exp["grader"]
-
-    # Fall back to python grader if endpoint graders are unsupported
-    if grader["type"] == "endpoint" and not ENDPOINT_GRADER_SUPPORTED:
-        grader = {"type": "python", "name": "zava_py_v2",
-                  "source": PY_SOURCE.strip(),
-                  "pass_threshold": grader.get("pass_threshold", 0.70)}
-        print(f"\nSubmitting: {exp['suffix']} (endpoint→python fallback)")
-    else:
-        print(f"\nSubmitting: {exp['suffix']}")
+    print(f"\nSubmitting: {exp['suffix']}")
     print(f"  {exp['description']}")
-
+    
     try:
         job = client.fine_tuning.jobs.create(
             model="o4-mini",
@@ -221,7 +138,7 @@ for exp in experiments:
             validation_file=val_id,
             suffix=exp["suffix"],
             method={"type": "reinforcement", "reinforcement": {
-                "grader": grader,
+                "grader": exp["grader"],
                 "tools": TOOLS,
                 "max_episode_steps": 5,
                 "hyperparameters": exp["hyperparameters"],
@@ -229,8 +146,8 @@ for exp in experiments:
         )
         print(f"  ✅ Job: {job.id} | Status: {job.status}")
         submitted.append({"job_id": job.id, "suffix": exp["suffix"], "description": exp["description"],
-                         "hyperparameters": exp["hyperparameters"], "grader_type": grader["type"],
-                         "pass_threshold": grader.get("pass_threshold")})
+                         "hyperparameters": exp["hyperparameters"], "grader_type": exp["grader"]["type"],
+                         "pass_threshold": exp["grader"].get("pass_threshold")})
     except Exception as e:
         print(f"  ❌ Error: {e}")
         submitted.append({"suffix": exp["suffix"], "error": str(e)})
