@@ -6,7 +6,7 @@ load_dotenv(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file_
 from openai import OpenAI
 
 client = OpenAI(
-    base_url=os.environ["OPENAI_BASE_URL"],
+    base_url=os.environ["AZURE_OPENAI_ENDPOINT"],
     api_key=os.environ["AZURE_OPENAI_API_KEY"],
 )
 
