@@ -1,0 +1,93 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+if ! command -v az >/dev/null 2>&1; then
+  echo "Azure CLI (az) is required but was not found."
+  echo "Install Azure CLI and re-run this script."
+  exit 1
+fi
+
+# Prompt for Azure login when there is no active session.
+if ! az account show >/dev/null 2>&1; then
+  echo "You need to sign in to Azure to retrieve Azure OpenAI credentials."
+  read -r -p "Press Enter to continue with 'az login --use-device-code'... "
+  az login --use-device-code >/dev/null
+fi
+
+if ! az account show >/dev/null 2>&1; then
+  echo "Azure login failed or was cancelled."
+  exit 1
+fi
+
+# Use the lab resource group directly.
+selected_rg="ResourceGroup1"
+
+rg_info=$(az group show --name "$selected_rg" --query "location" -o tsv 2>/dev/null) || {
+  echo "Resource group '$selected_rg' was not found in the current subscription."
+  echo "If it is in another subscription, run: az account set --subscription <name-or-id>"
+  exit 1
+}
+selected_location="$rg_info"
+
+echo "Using resource group: $selected_rg ($selected_location)"
+
+# Find AIServices / OpenAI accounts in the selected resource group.
+mapfile -t ai_accounts < <(az cognitiveservices account list \
+  --resource-group "$selected_rg" \
+  --query "[?kind=='AIServices' || kind=='OpenAI'].[name]" -o tsv)
+
+if [[ ${#ai_accounts[@]} -eq 0 ]]; then
+  echo "No AIServices or OpenAI accounts found in resource group '$selected_rg'."
+  exit 1
+fi
+
+selected_name=""
+
+if [[ ${#ai_accounts[@]} -eq 1 ]]; then
+  selected_name="${ai_accounts[0]}"
+else
+  echo "Multiple AI accounts found. Select one:"
+  for i in "${!ai_accounts[@]}"; do
+    printf "  %d) %s\n" "$((i + 1))" "${ai_accounts[$i]}"
+  done
+
+  while true; do
+    read -r -p "Enter a number [1-${#ai_accounts[@]}]: " choice
+    if [[ "$choice" =~ ^[0-9]+$ ]] && (( choice >= 1 && choice <= ${#ai_accounts[@]} )); then
+      selected_name="${ai_accounts[$((choice - 1))]}"
+      break
+    fi
+    echo "Invalid selection. Try again."
+  done
+fi
+
+endpoint=$(az cognitiveservices account show \
+  --name "$selected_name" \
+  --resource-group "$selected_rg" \
+  --query properties.endpoint \
+  -o tsv)
+
+api_key=$(az cognitiveservices account keys list \
+  --name "$selected_name" \
+  --resource-group "$selected_rg" \
+  --query key1 \
+  -o tsv)
+
+if [[ -z "$endpoint" || -z "$api_key" ]]; then
+  echo "Failed to retrieve endpoint or API key from account '$selected_name'."
+  exit 1
+fi
+
+# Write credentials to .env file at the repo root.
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
+ENV_FILE="$REPO_ROOT/.env"
+
+cat > "$ENV_FILE" <<EOF
+AZURE_OPENAI_ENDPOINT=$endpoint
+AZURE_OPENAI_API_KEY=$api_key
+EOF
+
+echo
+echo "Azure OpenAI credentials retrieved for: $selected_name (rg: $selected_rg)"
+echo "Written to $ENV_FILE"
