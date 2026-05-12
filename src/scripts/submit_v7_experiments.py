@@ -1,5 +1,5 @@
 """Upload v7 data and submit all v7 experiments."""
-import json, os, sys
+import json, os, sys, time
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from dotenv import load_dotenv
 load_dotenv(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), ".env"))
@@ -13,11 +13,23 @@ client = OpenAI(
 lab_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # ============================================================
-# Step 1: Use already-uploaded v7 data files
+# Step 1: Upload v7 data files
 # ============================================================
-train_id = "file-0d8cf472f692450ab9ad798bc4e915d8"
-val_id = "file-7c7789d5278549f099d81737a6aeb366"
-print(f"Using existing files: train={train_id}, val={val_id}")
+train_path = os.path.join(lab_dir, "data", "rft_v7_train.jsonl")
+val_path = os.path.join(lab_dir, "data", "rft_v7_val.jsonl")
+
+print("Uploading training file...")
+train_file = client.files.create(file=open(train_path, "rb"), purpose="fine-tune")
+train_id = train_file.id
+print(f"  ✅ train_id = {train_id}")
+
+print("Uploading validation file...")
+val_file = client.files.create(file=open(val_path, "rb"), purpose="fine-tune")
+val_id = val_file.id
+print(f"  ✅ val_id = {val_id}")
+
+print("Waiting 60 seconds for files to process...")
+time.sleep(60)
 
 # ============================================================
 # Common config

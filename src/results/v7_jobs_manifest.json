@@ -1,29 +1,84 @@
 {
-  "train_file": "file-0d8cf472f692450ab9ad798bc4e915d8",
-  "val_file": "file-7c7789d5278549f099d81737a6aeb366",
+  "train_file": "file-1eb0205351a64e0faa71bf6d1c9f8fa1",
+  "val_file": "file-844d9dacbb384809b8aacc8ed5549035",
   "train_examples": 343,
   "val_examples": 57,
   "steps_per_epoch": 85,
   "jobs": [
     {
+      "job_id": "ftjob-5505ddbe0e7d43a3a25d9162e64dbf4c",
       "suffix": "zava-v7-py80-lr1-3ep",
-      "error": "Error code: 400 - {'error': {'code': 'invalidPayload', 'message': 'RFTTools feature is not enabled for this subscription.'}}"
+      "description": "Baseline: LR=1.0, 3ep, threshold=0.80 (35% fail)",
+      "hyperparameters": {
+        "learning_rate_multiplier": 1.0,
+        "n_epochs": 3,
+        "compute_multiplier": 1.5,
+        "eval_interval": 5,
+        "eval_samples": 10,
+        "reasoning_effort": "medium"
+      },
+      "grader_type": "python",
+      "pass_threshold": 0.8
     },
     {
+      "job_id": "ftjob-0a56758beb334ba7ae9a041976ace03d",
       "suffix": "zava-v7-py80-lr2-3ep",
-      "error": "Error code: 400 - {'error': {'code': 'invalidPayload', 'message': 'RFTTools feature is not enabled for this subscription.'}}"
+      "description": "Higher LR: LR=2.0, 3ep, threshold=0.80",
+      "hyperparameters": {
+        "learning_rate_multiplier": 2.0,
+        "n_epochs": 3,
+        "compute_multiplier": 1.5,
+        "eval_interval": 5,
+        "eval_samples": 10,
+        "reasoning_effort": "medium"
+      },
+      "grader_type": "python",
+      "pass_threshold": 0.8
     },
     {
+      "job_id": "ftjob-4e2f826ea4724adfa4b7a4a3dc5097d6",
       "suffix": "zava-v7-py85-lr1-3ep",
-      "error": "Error code: 400 - {'error': {'code': 'invalidPayload', 'message': 'RFTTools feature is not enabled for this subscription.'}}"
+      "description": "Tighter threshold: LR=1.0, 3ep, threshold=0.85 (38% fail)",
+      "hyperparameters": {
+        "learning_rate_multiplier": 1.0,
+        "n_epochs": 3,
+        "compute_multiplier": 1.5,
+        "eval_interval": 5,
+        "eval_samples": 10,
+        "reasoning_effort": "medium"
+      },
+      "grader_type": "python",
+      "pass_threshold": 0.85
     },
     {
+      "job_id": "ftjob-e1eb06b6141844058e6bfb2f46db755a",
       "suffix": "zava-v7-py80-lr1-3ep-rh",
-      "error": "Error code: 400 - {'error': {'code': 'invalidPayload', 'message': 'RFTTools feature is not enabled for this subscription.'}}"
+      "description": "High reasoning: LR=1.0, 3ep, threshold=0.80, reasoning=high",
+      "hyperparameters": {
+        "learning_rate_multiplier": 1.0,
+        "n_epochs": 3,
+        "compute_multiplier": 1.5,
+        "eval_interval": 5,
+        "eval_samples": 10,
+        "reasoning_effort": "high"
+      },
+      "grader_type": "python",
+      "pass_threshold": 0.8
     },
     {
+      "job_id": "ftjob-ffd562824dae4306a002b8e12528dbcd",
       "suffix": "zava-v7-eg70-lr1-3ep",
-      "error": "Error code: 400 - {'error': {'code': 'invalidPayload', 'message': 'Endpoint grader is not supported in this region or subscription.'}}"
+      "description": "Endpoint grader: LR=1.0, 3ep, threshold=0.70 (32% fail)",
+      "hyperparameters": {
+        "learning_rate_multiplier": 1.0,
+        "n_epochs": 3,
+        "compute_multiplier": 1.5,
+        "eval_interval": 5,
+        "eval_samples": 10,
+        "reasoning_effort": "medium"
+      },
+      "grader_type": "endpoint",
+      "pass_threshold": 0.7
     }
   ]
 }
