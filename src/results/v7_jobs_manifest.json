@@ -1,12 +1,12 @@
 {
-  "train_file": "file-1eb0205351a64e0faa71bf6d1c9f8fa1",
-  "val_file": "file-844d9dacbb384809b8aacc8ed5549035",
+  "train_file": "file-a500f41a8673428e8ff49e30c00a31ed",
+  "val_file": "file-62cd9dc32ef34c0eade729934e84628f",
   "train_examples": 343,
   "val_examples": 57,
   "steps_per_epoch": 85,
   "jobs": [
     {
-      "job_id": "ftjob-5505ddbe0e7d43a3a25d9162e64dbf4c",
+      "job_id": "ftjob-1e5c9b7c6a174cc2bc78927ec3345952",
       "suffix": "zava-v7-py80-lr1-3ep",
       "description": "Baseline: LR=1.0, 3ep, threshold=0.80 (35% fail)",
       "hyperparameters": {
@@ -21,7 +21,7 @@
       "pass_threshold": 0.8
     },
     {
-      "job_id": "ftjob-0a56758beb334ba7ae9a041976ace03d",
+      "job_id": "ftjob-ce3bf4a637aa4383ab339d0733fa9a37",
       "suffix": "zava-v7-py80-lr2-3ep",
       "description": "Higher LR: LR=2.0, 3ep, threshold=0.80",
       "hyperparameters": {
@@ -36,7 +36,7 @@
       "pass_threshold": 0.8
     },
     {
-      "job_id": "ftjob-4e2f826ea4724adfa4b7a4a3dc5097d6",
+      "job_id": "ftjob-920fbdf44fcd490ca97e553d63ff7c66",
       "suffix": "zava-v7-py85-lr1-3ep",
       "description": "Tighter threshold: LR=1.0, 3ep, threshold=0.85 (38% fail)",
       "hyperparameters": {
@@ -51,7 +51,7 @@
       "pass_threshold": 0.85
     },
     {
-      "job_id": "ftjob-e1eb06b6141844058e6bfb2f46db755a",
+      "job_id": "ftjob-47ba579c8d4e4088a9b033e88db0b479",
       "suffix": "zava-v7-py80-lr1-3ep-rh",
       "description": "High reasoning: LR=1.0, 3ep, threshold=0.80, reasoning=high",
       "hyperparameters": {
@@ -66,7 +66,7 @@
       "pass_threshold": 0.8
     },
     {
-      "job_id": "ftjob-ffd562824dae4306a002b8e12528dbcd",
+      "job_id": "ftjob-fd3b038ef69146df999de448f2b82863",
       "suffix": "zava-v7-eg70-lr1-3ep",
       "description": "Endpoint grader: LR=1.0, 3ep, threshold=0.70 (32% fail)",
       "hyperparameters": {

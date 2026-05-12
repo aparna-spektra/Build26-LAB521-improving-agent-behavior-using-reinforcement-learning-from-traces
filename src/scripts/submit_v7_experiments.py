@@ -154,6 +154,7 @@ for exp in experiments:
                 "tools": TOOLS,
                 "max_episode_steps": 5,
                 "hyperparameters": exp["hyperparameters"],
+                "extra_body": {"trainingType": "GlobalStandard"},
             }},
         )
         print(f"  ✅ Job: {job.id} | Status: {job.status}")
