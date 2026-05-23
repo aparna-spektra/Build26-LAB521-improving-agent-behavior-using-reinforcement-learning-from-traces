@@ -1,12 +1,12 @@
 {
-  "train_file": "file-a500f41a8673428e8ff49e30c00a31ed",
-  "val_file": "file-62cd9dc32ef34c0eade729934e84628f",
+  "train_file": "file-7e7fb62de2a94e1ea8919f023425e5ff",
+  "val_file": "file-3f7154782acd48f1a940dfee8d6d50b3",
   "train_examples": 343,
   "val_examples": 57,
   "steps_per_epoch": 85,
   "jobs": [
     {
-      "job_id": "ftjob-1e5c9b7c6a174cc2bc78927ec3345952",
+      "job_id": "ftjob-ae3e95611c514a4caa1105063e72af3b",
       "suffix": "zava-v7-py80-lr1-3ep",
       "description": "Baseline: LR=1.0, 3ep, threshold=0.80 (35% fail)",
       "hyperparameters": {
@@ -19,66 +19,6 @@
       },
       "grader_type": "python",
       "pass_threshold": 0.8
-    },
-    {
-      "job_id": "ftjob-ce3bf4a637aa4383ab339d0733fa9a37",
-      "suffix": "zava-v7-py80-lr2-3ep",
-      "description": "Higher LR: LR=2.0, 3ep, threshold=0.80",
-      "hyperparameters": {
-        "learning_rate_multiplier": 2.0,
-        "n_epochs": 3,
-        "compute_multiplier": 1.5,
-        "eval_interval": 5,
-        "eval_samples": 10,
-        "reasoning_effort": "medium"
-      },
-      "grader_type": "python",
-      "pass_threshold": 0.8
-    },
-    {
-      "job_id": "ftjob-920fbdf44fcd490ca97e553d63ff7c66",
-      "suffix": "zava-v7-py85-lr1-3ep",
-      "description": "Tighter threshold: LR=1.0, 3ep, threshold=0.85 (38% fail)",
-      "hyperparameters": {
-        "learning_rate_multiplier": 1.0,
-        "n_epochs": 3,
-        "compute_multiplier": 1.5,
-        "eval_interval": 5,
-        "eval_samples": 10,
-        "reasoning_effort": "medium"
-      },
-      "grader_type": "python",
-      "pass_threshold": 0.85
-    },
-    {
-      "job_id": "ftjob-47ba579c8d4e4088a9b033e88db0b479",
-      "suffix": "zava-v7-py80-lr1-3ep-rh",
-      "description": "High reasoning: LR=1.0, 3ep, threshold=0.80, reasoning=high",
-      "hyperparameters": {
-        "learning_rate_multiplier": 1.0,
-        "n_epochs": 3,
-        "compute_multiplier": 1.5,
-        "eval_interval": 5,
-        "eval_samples": 10,
-        "reasoning_effort": "high"
-      },
-      "grader_type": "python",
-      "pass_threshold": 0.8
-    },
-    {
-      "job_id": "ftjob-fd3b038ef69146df999de448f2b82863",
-      "suffix": "zava-v7-eg70-lr1-3ep",
-      "description": "Endpoint grader: LR=1.0, 3ep, threshold=0.70 (32% fail)",
-      "hyperparameters": {
-        "learning_rate_multiplier": 1.0,
-        "n_epochs": 3,
-        "compute_multiplier": 1.5,
-        "eval_interval": 5,
-        "eval_samples": 10,
-        "reasoning_effort": "medium"
-      },
-      "grader_type": "endpoint",
-      "pass_threshold": 0.7
     }
   ]
 }
