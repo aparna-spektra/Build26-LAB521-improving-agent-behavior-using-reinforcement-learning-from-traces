@@ -1,4 +1,4 @@
-# 🚀 Get Started
+<!-- # 🚀 Get Started
 
 **This repo is where attendees go to continue their learning after your session — and your Copilot agent will help you set it up.**
 
@@ -29,7 +29,7 @@ Once your content is in the repo, use these three phrases with Copilot to build 
 
 > 💡 **These three phrases are just the starting point.** Copilot can do much more — try asking it to brainstorm next steps for attendees, generate code samples, or build out your repo structure. Don't be afraid to put it in plan mode and ask for what you need.
 
----
+--- -->
 
 <p align="center">
 <img src="img/banner-build-26.png" alt="Microsoft Build 2026" width="1200"/>
