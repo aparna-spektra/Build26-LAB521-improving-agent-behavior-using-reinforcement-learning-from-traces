@@ -10,6 +10,9 @@ In this section, you'll analyze the training reward curve from a completed RFT r
 
 ## Step 1: Open the Notebook
 
+> [!TIP]
+> As you open a new notebook, first, click on notebook file to open it. Next, at the top of the notebook click the **Run All** command to execute the notebook. A pop up will be created, select: **Python 3.13....**, you will have successfully executed the notebook.
+
 1. Open **`src/05-training-results-evaluate.ipynb`** in VS Code.
 1. You will need to add the credentials of an already finetuned model, the credentials are as follows:
      -  azure_endpoint: endpoint variable
