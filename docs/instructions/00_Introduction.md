@@ -15,7 +15,7 @@ By the end of this lab, you should be able to:
 ## Resources
 
 > [!TIP]
-> You can find your Microsoft Foundry endpoint, API key, and any other credentials in the **Resources tab** provided by your facilitator.
+> You can find your Microsoft Foundry logins, and any other credentials in the **Resources tab** on Skillable.
 
 ## Lab Outline
 
@@ -26,6 +26,7 @@ The lab is organized into **5 notebooks**, taking you through the full RFT workf
 3. **Baseline & Grader** — Evaluate the base model, understand how the grader drives RFT learning, and calibrate the pass threshold
 4. **Build Data & Submit a Job** — Explore the RFT data format, craft a training example, and submit a real fine-tuning job
 5. **Training Results & Evaluate** — Analyze the reward curve, compare checkpoints, and run a head-to-head evaluation of the fine-tuned model
+
 
 ## Business Scenario
 

@@ -16,6 +16,9 @@ The agent works as follows:
 
 ## Step 1: Open the Notebook
 
+> [!TIP]
+> As you open a new notebook, first, click on notebook file to open it. Next, at the top of the notebook click the **Run All** command to execute the notebook. A pop up will be created, select: **Python 3.13....**, you will have successfully executed the notebook.
+
 1. In the VS Code Explorer (`src/` folder), open **`02-meet-the-agent.ipynb`**.
 2. Run the **Setup** cell at the top to reconnect to Microsoft Foundry.
 
