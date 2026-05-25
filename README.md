@@ -46,15 +46,16 @@ AI agents often work, but their behavior can be inconsistent or hard to control 
 ### 🏫 Getting started in a guided session
 
 To get started in a guided lab session:
-- Open this repo in the GitHub Codespace your facilitator prepared — the link will be provided at the start of the lab
-- Run the script /get.env to update your .env variables and /rft tosubmit your fine tuning job
+- Open this repo in the GitHub Codespace your facilitator prepared the link will be provided at the start of the lab
+- Run the script /get-env to update your .env variables and /submit-rft to submit your fine tuning job
 - Open `src/01-introduction-setup.ipynb` and follow the instructions from there
 
 ### 🏠 Getting started in your own environment
 
 If you're following these steps at your own pace:
-- Clone this repository
-- Run the script /get.env to update your .env variables and /rft tosubmit your fine tuning job
+- Clone this repository or create Codespaces
+- Create a Microsoft Foundry project and deploy an o4-mini model
+- Update the .env files with your Azure OpenAI endpoint and Key
 - Install dependencies: `pip install -r src/requirements.txt`
 - Open `src/01-introduction-setup.ipynb` to begin
 
@@ -80,7 +81,7 @@ Use these as a starting point — or write your own!
 ### 💻 Technologies Used
 
 1. Microsoft Foundry
-1. OpenAI o4-mini
+1. Azure OpenAI o4-mini
 1. Python (Jupyter notebooks)
 1. Reinforcement fine-tuning (RFT)
 
@@ -89,8 +90,8 @@ Use these as a starting point — or write your own!
 | Resource | Description |
 |:---------|:------------|
 | [https://aka.ms/build26-next-steps](https://aka.ms/build26-next-steps) | Take the next step in your learning journey after Build 2026 |
-| [Facilitator Setup Guide](docs/facilitator-setup.md) | Pre-session checklist: deploy models, tool endpoints, and prepare participant environments |
-| [RFT Lessons Learned](docs/rft-lessons-learned.md) | Hard-won lessons from building the agentic RFT pipeline — grader selection, partial credit, checkpoint evaluation, and more |
+| [Fine Tuning demos](https://github.com/microsoft-foundry/fine-tuning) | Find all sample fine tuning examples on Azure |
+| [Fine Tuning Docs](https://learn.microsoft.com/en-us/azure/foundry/openai/how-to/fine-tuning?tabs=oai-sdk&pivots=programming-language-studio ) | Microsoft Foundry Fine Tuning documentation |
 
 
 ### 🌟 Microsoft Learn MCP Server
