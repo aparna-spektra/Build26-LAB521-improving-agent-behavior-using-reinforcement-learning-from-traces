@@ -1,0 +1,150 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "hand-authored",
+      "description": "Deploys an Azure AI Foundry (AIServices) account with project management enabled, a Foundry project, and an o4-mini model deployment. Defaults match the lab @lab.* variables."
+    }
+  },
+  "parameters": {
+    "resourceGroupName": {
+      "type": "string",
+      "defaultValue": "@lab.CloudResourceGroup(ResourceGroup1).Name",
+      "metadata": {
+        "description": "Lab resource group name. Informational only — the deployment is scoped to the target resource group."
+      }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "@lab.CloudResourceGroup(ResourceGroup1).Location",
+      "metadata": {
+        "description": "Azure region. Defaults to the lab resource group location."
+      }
+    },
+    "foundryResourceName": {
+      "type": "string",
+      "defaultValue": "Build@lab.LabInstance.Id",
+      "minLength": 2,
+      "maxLength": 64,
+      "metadata": {
+        "description": "Name of the Foundry (AIServices) account. Also used as the custom subdomain and as the project name."
+      }
+    },
+    "skuName": {
+      "type": "string",
+      "defaultValue": "S0",
+      "metadata": {
+        "description": "AIServices account SKU."
+      }
+    },
+    "deployments": {
+      "type": "array",
+      "defaultValue": [
+        {
+          "name": "o4-mini",
+          "model": {
+            "format": "OpenAI",
+            "name": "o4-mini",
+            "version": "2025-04-16"
+          },
+          "sku": {
+            "name": "GlobalStandard",
+            "capacity": 50
+          }
+        }
+      ],
+      "metadata": {
+        "description": "Model deployments to create on the Foundry account."
+      }
+    },
+    "tags": {
+      "type": "object",
+      "defaultValue": {}
+    }
+  },
+  "variables": {
+    "rawFoundryName": "[toLower(parameters('foundryResourceName'))]",
+    "sanitizedFoundryName": "[replace(replace(replace(replace(variables('rawFoundryName'), '@', ''), '.', ''), '_', ''), ' ', '')]",
+    "foundryName": "[take(variables('sanitizedFoundryName'), 64)]",
+    "projectName": "[take(variables('sanitizedFoundryName'), 64)]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.CognitiveServices/accounts",
+      "apiVersion": "2025-04-01-preview",
+      "name": "[variables('foundryName')]",
+      "location": "[parameters('location')]",
+      "tags": "[parameters('tags')]",
+      "kind": "AIServices",
+      "sku": {
+        "name": "[parameters('skuName')]"
+      },
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "allowProjectManagement": true,
+        "customSubDomainName": "[variables('foundryName')]",
+        "publicNetworkAccess": "Enabled",
+        "disableLocalAuth": false
+      }
+    },
+    {
+      "type": "Microsoft.CognitiveServices/accounts/projects",
+      "apiVersion": "2025-04-01-preview",
+      "name": "[format('{0}/{1}', variables('foundryName'), variables('projectName'))]",
+      "location": "[parameters('location')]",
+      "tags": "[parameters('tags')]",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {},
+      "dependsOn": [
+        "[resourceId('Microsoft.CognitiveServices/accounts', variables('foundryName'))]"
+      ]
+    },
+    {
+      "type": "Microsoft.CognitiveServices/accounts/deployments",
+      "apiVersion": "2025-04-01-preview",
+      "copy": {
+        "name": "modelDeployments",
+        "count": "[length(parameters('deployments'))]",
+        "mode": "serial",
+        "batchSize": 1
+      },
+      "name": "[format('{0}/{1}', variables('foundryName'), parameters('deployments')[copyIndex()].name)]",
+      "properties": {
+        "model": "[parameters('deployments')[copyIndex()].model]",
+        "raiPolicyName": "[if(contains(parameters('deployments')[copyIndex()], 'raiPolicyName'), parameters('deployments')[copyIndex()].raiPolicyName, null())]"
+      },
+      "sku": "[if(contains(parameters('deployments')[copyIndex()], 'sku'), parameters('deployments')[copyIndex()].sku, createObject('name', 'Standard', 'capacity', 50))]",
+      "dependsOn": [
+        "[resourceId('Microsoft.CognitiveServices/accounts', variables('foundryName'))]",
+        "[resourceId('Microsoft.CognitiveServices/accounts/projects', variables('foundryName'), variables('projectName'))]"
+      ]
+    }
+  ],
+  "outputs": {
+    "foundryAccountName": {
+      "type": "string",
+      "value": "[variables('foundryName')]"
+    },
+    "foundryAccountId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.CognitiveServices/accounts', variables('foundryName'))]"
+    },
+    "foundryEndpoint": {
+      "type": "string",
+      "value": "[reference(resourceId('Microsoft.CognitiveServices/accounts', variables('foundryName')), '2025-04-01-preview').endpoint]"
+    },
+    "projectName": {
+      "type": "string",
+      "value": "[variables('projectName')]"
+    },
+    "projectId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.CognitiveServices/accounts/projects', variables('foundryName'), variables('projectName'))]"
+    }
+  }
+}
