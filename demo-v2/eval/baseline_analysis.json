@@ -1,0 +1,192 @@
+{
+  "timestamp": 1779817428,
+  "model_scores": [
+    [
+      "gpt-4-1-mini",
+      56.451612903225815,
+      35,
+      62
+    ],
+    [
+      "gpt-4-1",
+      54.83870967741935,
+      34,
+      62
+    ],
+    [
+      "gpt-5-4",
+      51.61290322580645,
+      32,
+      62
+    ],
+    [
+      "o4-mini",
+      45.16129032258064,
+      28,
+      62
+    ],
+    [
+      "gpt-5-4-mini",
+      45.16129032258064,
+      28,
+      62
+    ],
+    [
+      "gpt-4-1-nano",
+      43.54838709677419,
+      27,
+      62
+    ]
+  ],
+  "criteria_performance": {
+    "zava_quality": {
+      "o4-mini": {
+        "passed": 35,
+        "total": 62,
+        "pct": 56.451612903225815
+      },
+      "gpt-4-1": {
+        "passed": 38,
+        "total": 59,
+        "pct": 64.40677966101694
+      },
+      "gpt-4-1-mini": {
+        "passed": 40,
+        "total": 62,
+        "pct": 64.51612903225806
+      },
+      "gpt-4-1-nano": {
+        "passed": 36,
+        "total": 62,
+        "pct": 58.06451612903226
+      },
+      "gpt-5-4": {
+        "passed": 37,
+        "total": 59,
+        "pct": 62.71186440677966
+      },
+      "gpt-5-4-mini": {
+        "passed": 32,
+        "total": 60,
+        "pct": 53.333333333333336
+      }
+    },
+    "IntentResolution": {
+      "o4-mini": {
+        "passed": 55,
+        "total": 62,
+        "pct": 88.70967741935483
+      },
+      "gpt-4-1": {
+        "passed": 61,
+        "total": 62,
+        "pct": 98.38709677419355
+      },
+      "gpt-4-1-mini": {
+        "passed": 55,
+        "total": 62,
+        "pct": 88.70967741935483
+      },
+      "gpt-4-1-nano": {
+        "passed": 49,
+        "total": 62,
+        "pct": 79.03225806451613
+      },
+      "gpt-5-4": {
+        "passed": 61,
+        "total": 62,
+        "pct": 98.38709677419355
+      },
+      "gpt-5-4-mini": {
+        "passed": 41,
+        "total": 49,
+        "pct": 83.6734693877551
+      }
+    },
+    "TaskCompletion": {
+      "o4-mini": {
+        "passed": 32,
+        "total": 62,
+        "pct": 51.61290322580645
+      },
+      "gpt-4-1": {
+        "passed": 36,
+        "total": 62,
+        "pct": 58.06451612903226
+      },
+      "gpt-4-1-mini": {
+        "passed": 37,
+        "total": 62,
+        "pct": 59.67741935483871
+      },
+      "gpt-4-1-nano": {
+        "passed": 38,
+        "total": 61,
+        "pct": 62.295081967213115
+      },
+      "gpt-5-4": {
+        "passed": 33,
+        "total": 62,
+        "pct": 53.2258064516129
+      },
+      "gpt-5-4-mini": {
+        "passed": 36,
+        "total": 49,
+        "pct": 73.46938775510205
+      }
+    }
+  },
+  "token_usage": [
+    {
+      "model": "gpt-5-4-mini",
+      "total": 297769,
+      "avg": 4802.725806451613,
+      "cost": 11.91076,
+      "invocations": 98
+    },
+    {
+      "model": "gpt-4-1-nano",
+      "total": 373784,
+      "avg": 6028.774193548387,
+      "cost": 14.95136,
+      "invocations": 123
+    },
+    {
+      "model": "o4-mini",
+      "total": 375269,
+      "avg": 6052.725806451613,
+      "cost": 15.010760000000001,
+      "invocations": 124
+    },
+    {
+      "model": "gpt-4-1-mini",
+      "total": 376348,
+      "avg": 6070.129032258064,
+      "cost": 15.053920000000002,
+      "invocations": 124
+    },
+    {
+      "model": "gpt-4-1",
+      "total": 379238,
+      "avg": 6116.741935483871,
+      "cost": 15.16952,
+      "invocations": 124
+    },
+    {
+      "model": "gpt-5-4",
+      "total": 379636,
+      "avg": 6123.1612903225805,
+      "cost": 15.185440000000002,
+      "invocations": 124
+    }
+  ],
+  "recommendations": {
+    "best_model": "gpt-4-1-mini",
+    "best_score": 56.451612903225815,
+    "target_improvement": "20-25%",
+    "focus_areas": [
+      "decision_correctness",
+      "format_compliance"
+    ]
+  }
+}

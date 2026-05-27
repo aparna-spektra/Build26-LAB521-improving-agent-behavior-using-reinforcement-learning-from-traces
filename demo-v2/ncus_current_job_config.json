@@ -1,0 +1,90 @@
+{
+  "id": "ftjob-873594fb42c941fbac8e86f725936363",
+  "created_at": 1779848270,
+  "error": null,
+  "fine_tuned_model": "o4-mini-2025-04-16.ft-873594fb42c941fbac8e86f725936363-zava-next-rft-20260527-021749",
+  "finished_at": 1779859943,
+  "hyperparameters": null,
+  "model": "o4-mini-2025-04-16",
+  "object": "fine_tuning.job",
+  "organization_id": null,
+  "result_files": [
+    "file-a3279fe4bfa5469a8681a938c95d822e"
+  ],
+  "seed": 1082664038,
+  "status": "succeeded",
+  "trained_tokens": 168393,
+  "training_file": "file-3bff93269f3b4b7c980bf3e138b3a41e",
+  "validation_file": "file-f898661408494e1787e18c11228ffb52",
+  "estimated_finish": 1779859250,
+  "integrations": null,
+  "metadata": {
+    "base_model": "o4-mini",
+    "model_version": "2025-04-16"
+  },
+  "method": {
+    "type": "reinforcement",
+    "dpo": null,
+    "reinforcement": {
+      "grader": {
+        "input": null,
+        "name": null,
+        "operation": null,
+        "reference": null,
+        "type": "python",
+        "image_tag": "2025-05-08",
+        "source": "\"\"\"\nZava RFT Grader - For Reinforcement Fine-Tuning\nFixed based on actual RFT training data format (2026-05-26)\n\nDuring RFT training, Foundry provides:\n- item['messages']: Full conversation array (user + assistant messages)\n- item['tools']: Tool calls made during the conversation\n- item['expected_resolution']: Expected resolution from dataset\n- item[other dataset fields]: All fields from training JSONL\n\nThe agent's response is in the last assistant message in item['messages'].\n\"\"\"\n\nimport json\nimport re\n\n\ndef grade(sample, item):\n    \"\"\"\n    Grade agent response for RFT training.\n    \n    Args:\n        sample: Model output metadata (not used in RFT)\n        item: Dict with conversation and dataset fields:\n              - item['messages']: Conversation array with agent response\n              - item['tools']: Tool calls (optional)\n              - item['expected_resolution']: Expected resolution from dataset\n    \n    Returns:\n        float: Score between 0.0 and 1.0\n    \"\"\"\n    # =========================================================================\n    # EXTRACT AGENT RESPONSE from conversation messages\n    # =========================================================================\n    messages = item.get(\"messages\", [])\n    if not messages:\n        return 0.0\n    \n    # Find the last assistant message (agent's response)\n    output_text = \"\"\n    for msg in reversed(messages):\n        if msg.get(\"role\") == \"assistant\":\n            output_text = msg.get(\"content\", \"\")\n            break\n    \n    if not output_text:\n        return 0.0\n    \n    # =========================================================================\n    # EXTRACT TOOL CALLS (if available)\n    # =========================================================================\n    output_tools = item.get(\"tools\", []) or []\n    \n    # =========================================================================\n    # EXTRACT EXPECTED RESOLUTION\n    # =========================================================================\n    expected = item.get(\"expected_resolution\", \"\")\n    if not expected:\n        return 0.0\n    \n    out_lower = output_text.lower()\n    exp_lower = expected.lower()\n    score = 0.0\n    \n    # =========================================================================\n    # 1. CLARIFICATION SCENARIOS (Policy: clarification)\n    # =========================================================================\n    if exp_lower.startswith(\"policy: clarification\"):\n        # Check if agent asked for clarification and mentioned order ID\n        has_clarification = \"policy: clarification\" in out_lower\n        has_order_id = \"order id\" in out_lower or \"order_id\" in out_lower\n        \n        if has_clarification and has_order_id:\n            return 1.0  # Perfect clarification response\n        elif has_clarification or has_order_id:\n            return 0.7  # Partial clarification\n        else:\n            return 0.3  # Attempted response but wrong\n    \n    # =========================================================================\n    # 2. ACTION SCENARIOS (Specific resolutions)\n    # =========================================================================\n    \n    # Action keywords mapping for different resolution types\n    action_keywords = {\n        \"deny\": [\"denied\", \"deny\", \"not eligible\", \"cannot\", \"expired\", \"unable\", \"not returnable\"],\n        \"cancel\": [\"cancel\", \"cancellation\"],\n        \"store credit\": [\"store credit\", \"store_credit\"],\n        \"exchange\": [\"exchange\", \"swap\"],\n        \"replacement\": [\"replacement\", \"replace\"],\n        \"refund\": [\"refund\"],\n    }\n    \n    # -------------------------------------------------------------------------\n    # Component 1: Action/Decision Match (45% weight)\n    # -------------------------------------------------------------------------\n    # Parse expected actions from expected_resolution (format: \"action: refund\")\n    action_matches = re.findall(r'action:\\s*(\\w+(?:\\s+\\w+)?)', exp_lower)\n    \n    if action_matches:\n        hits = 0\n        for act in action_matches:\n            # Get keywords for this action type\n            keywords = action_keywords.get(act.strip(), [act.strip()])\n            # Check if any keyword appears in output\n            if any(k in out_lower for k in keywords):\n                hits += 1\n        \n        action_score = 0.45 * (hits / len(action_matches))\n        score += action_score\n    \n    # -------------------------------------------------------------------------\n    # Component 2: Financial Amount Match (35% weight)\n    # -------------------------------------------------------------------------\n    # Extract dollar amounts from expected resolution\n    exp_amounts = re.findall(r'\\$(\\d+\\.?\\d{0,2})', expected)\n    non_zero = [a for a in exp_amounts if float(a) > 0.0]\n    \n    if non_zero:\n        # Extract dollar amounts from output (with optional space after $)\n        out_amounts = re.findall(r'\\$\\s*(\\d+(?:\\.\\d{1,2})?)', output_text)\n        out_floats = {round(float(a), 2) for a in out_amounts}\n        \n        # Check each expected amount is present (with 2 cent tolerance)\n        hits = sum(1 for a in non_zero if any(abs(float(a) - o) < 0.02 for o in out_floats))\n        amount_score = 0.35 * (hits / len(non_zero))\n        score += amount_score\n    else:\n        # No amounts expected, give partial credit\n        score += 0.15\n    \n    # -------------------------------------------------------------------------\n    # Component 3: Tool Usage (20% weight)\n    # -------------------------------------------------------------------------\n    # Check that agent used key tools appropriately\n    if output_tools:\n        # Handle different tool call formats\n        tool_names = []\n        for t in output_tools:\n            if isinstance(t, dict):\n                # Try different possible structures\n                name = (\n                    t.get(\"name\") or \n                    t.get(\"function\", {}).get(\"name\") or\n                    t.get(\"tool_name\") or\n                    \"\"\n                )\n                if name:\n                    tool_names.append(name)\n        \n        # Key tools expected for most scenarios\n        key_tools = [\n            \"get_order_details\",        # Always needed to understand the order\n            \"check_resolution_policy\",  # Needed to know what's allowed\n            \"calculate_resolution\"      # Needed to compute amounts\n        ]\n        \n        # Count how many key tools were used\n        hits = sum(1 for t in key_tools if t in tool_names)\n        tool_score = 0.20 * (hits / len(key_tools))\n        score += tool_score\n    \n    # =========================================================================\n    # FINAL SCORE\n    # =========================================================================\n    # Cap at 1.0 and round to 3 decimals\n    final_score = round(min(score, 1.0), 3)\n    \n    return final_score\n\n\n# =============================================================================\n# GRADER METADATA (for reference)\n# =============================================================================\n# Pass Threshold: 0.80 (scenarios scoring \u22650.80 count as \"success\")\n# Scoring Breakdown:\n#   - Action/Decision Match: 45% (correct refund/exchange/deny/etc.)\n#   - Financial Amounts: 35% (correct dollar amounts within 2\u00a2)\n#   - Tool Usage: 20% (used get_order_details, check_policy, calculate)\n#\n# Special Cases:\n#   - Clarification scenarios: Full score if asks for order ID\n#   - Zero-amount scenarios: 15% amount credit (since no amounts to verify)\n#\n# Data Format (RFT Training):\n#   - item['messages']: Array of conversation messages\n#   - item['tools']: Array of tool calls\n#   - item['expected_resolution']: Ground truth from dataset\n# =============================================================================",
+        "pass_threshold": 0.8
+      },
+      "hyperparameters": {
+        "batch_size": 7,
+        "compute_multiplier": 1.5,
+        "eval_interval": 5,
+        "eval_samples": 10,
+        "learning_rate_multiplier": 1.0,
+        "n_epochs": 1,
+        "reasoning_effort": "medium"
+      },
+      "tools": [
+        {
+          "name": "get_order_details",
+          "server_url": "https://zava-next-tools-omkarm.azurewebsites.net/tool",
+          "headers": {}
+        },
+        {
+          "name": "get_fulfillment_status",
+          "server_url": "https://zava-next-tools-omkarm.azurewebsites.net/tool",
+          "headers": {}
+        },
+        {
+          "name": "check_resolution_policy",
+          "server_url": "https://zava-next-tools-omkarm.azurewebsites.net/tool",
+          "headers": {}
+        },
+        {
+          "name": "check_inventory",
+          "server_url": "https://zava-next-tools-omkarm.azurewebsites.net/tool",
+          "headers": {}
+        },
+        {
+          "name": "calculate_resolution",
+          "server_url": "https://zava-next-tools-omkarm.azurewebsites.net/tool",
+          "headers": {}
+        },
+        {
+          "name": "submit_resolution",
+          "server_url": "https://zava-next-tools-omkarm.azurewebsites.net/tool",
+          "headers": {}
+        }
+      ],
+      "max_episode_steps": 5
+    },
+    "supervised": null
+  },
+  "additionalParameters": {
+    "completionOverride": "True"
+  },
+  "suffix": "zava-next-rft-20260527-021749",
+  "trainingType": "standard",
+  "eval": "eval_6a165bce28848191bf7f994474f9f061"
+}

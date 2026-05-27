@@ -1,0 +1,16 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Environment variables (contains secrets)
+.env
+
+# azd per-user state
+deploy/.azure/
+
+# Generated manifests (created by deploy scripts)
+.generated/
+
+# OS
+.DS_Store

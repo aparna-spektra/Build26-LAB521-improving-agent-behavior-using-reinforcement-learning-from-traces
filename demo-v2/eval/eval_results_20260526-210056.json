@@ -1,0 +1,186 @@
+{
+  "timestamp": "20260526-210056",
+  "eval_id": "eval_09201956538e459b8773c3502b7f257b",
+  "eval_name": "zava-multi-model-eval-20260526-210056",
+  "dataset_uri": "azureai://accounts/ai-account-44mf5lkxqssxm/projects/ai-project-omi-build26-azd-env/data/zava-eval-20260526-210056/versions/1.0",
+  "dataset_name": "zava-eval-20260526-210056",
+  "run_ids": {
+    "o4-mini": "evalrun_b73b33f0c03640c9ac6377aa7cb7192f",
+    "gpt-4-1": "evalrun_c3192f58bf6d43c8979c6c8e05e8a281",
+    "gpt-4-1-mini": "evalrun_083b49745707493f90c3ed5272235c4b",
+    "gpt-4-1-nano": "evalrun_7ebb4fcea13446b4954f0ded72f990e7",
+    "gpt-5-4": "evalrun_2e7349902eae416eaa61767db5bbc3b4",
+    "gpt-5-4-mini": "evalrun_a020267b398f4802a85e331113d0addc"
+  },
+  "results": {
+    "o4-mini": {
+      "status": "completed",
+      "overall": {
+        "total": 62,
+        "passed": 47,
+        "failed": 15,
+        "errored": 0,
+        "skipped": 0
+      },
+      "per_criteria": {
+        "zava_quality": {
+          "passed": 47,
+          "failed": 15,
+          "total": 62
+        },
+        "IntentResolution": {
+          "passed": 0,
+          "failed": 0,
+          "total": 0
+        },
+        "TaskCompletion": {
+          "passed": 0,
+          "failed": 0,
+          "total": 0
+        }
+      },
+      "report_url": "https://ai.azure.com/nextgen/r/hWyA_fFOQ2u0NPvESpED9w,rg-omi-build26-azd-env,,ai-account-44mf5lkxqssxm,ai-project-omi-build26-azd-env/build/evaluations/eval_09201956538e459b8773c3502b7f257b/run/evalrun_b73b33f0c03640c9ac6377aa7cb7192f"
+    },
+    "gpt-4-1": {
+      "status": "completed",
+      "overall": {
+        "total": 62,
+        "passed": 45,
+        "failed": 12,
+        "errored": 5,
+        "skipped": 0
+      },
+      "per_criteria": {
+        "zava_quality": {
+          "passed": 45,
+          "failed": 12,
+          "total": 57
+        },
+        "IntentResolution": {
+          "passed": 0,
+          "failed": 0,
+          "total": 0
+        },
+        "TaskCompletion": {
+          "passed": 0,
+          "failed": 0,
+          "total": 0
+        }
+      },
+      "report_url": "https://ai.azure.com/nextgen/r/hWyA_fFOQ2u0NPvESpED9w,rg-omi-build26-azd-env,,ai-account-44mf5lkxqssxm,ai-project-omi-build26-azd-env/build/evaluations/eval_09201956538e459b8773c3502b7f257b/run/evalrun_c3192f58bf6d43c8979c6c8e05e8a281"
+    },
+    "gpt-4-1-mini": {
+      "status": "completed",
+      "overall": {
+        "total": 62,
+        "passed": 33,
+        "failed": 29,
+        "errored": 0,
+        "skipped": 0
+      },
+      "per_criteria": {
+        "zava_quality": {
+          "passed": 33,
+          "failed": 29,
+          "total": 62
+        },
+        "IntentResolution": {
+          "passed": 0,
+          "failed": 0,
+          "total": 0
+        },
+        "TaskCompletion": {
+          "passed": 0,
+          "failed": 0,
+          "total": 0
+        }
+      },
+      "report_url": "https://ai.azure.com/nextgen/r/hWyA_fFOQ2u0NPvESpED9w,rg-omi-build26-azd-env,,ai-account-44mf5lkxqssxm,ai-project-omi-build26-azd-env/build/evaluations/eval_09201956538e459b8773c3502b7f257b/run/evalrun_083b49745707493f90c3ed5272235c4b"
+    },
+    "gpt-4-1-nano": {
+      "status": "completed",
+      "overall": {
+        "total": 62,
+        "passed": 27,
+        "failed": 35,
+        "errored": 0,
+        "skipped": 0
+      },
+      "per_criteria": {
+        "zava_quality": {
+          "passed": 27,
+          "failed": 35,
+          "total": 62
+        },
+        "IntentResolution": {
+          "passed": 0,
+          "failed": 0,
+          "total": 0
+        },
+        "TaskCompletion": {
+          "passed": 0,
+          "failed": 0,
+          "total": 0
+        }
+      },
+      "report_url": "https://ai.azure.com/nextgen/r/hWyA_fFOQ2u0NPvESpED9w,rg-omi-build26-azd-env,,ai-account-44mf5lkxqssxm,ai-project-omi-build26-azd-env/build/evaluations/eval_09201956538e459b8773c3502b7f257b/run/evalrun_7ebb4fcea13446b4954f0ded72f990e7"
+    },
+    "gpt-5-4": {
+      "status": "completed",
+      "overall": {
+        "total": 62,
+        "passed": 49,
+        "failed": 13,
+        "errored": 0,
+        "skipped": 0
+      },
+      "per_criteria": {
+        "zava_quality": {
+          "passed": 49,
+          "failed": 13,
+          "total": 62
+        },
+        "IntentResolution": {
+          "passed": 0,
+          "failed": 0,
+          "total": 0
+        },
+        "TaskCompletion": {
+          "passed": 0,
+          "failed": 0,
+          "total": 0
+        }
+      },
+      "report_url": "https://ai.azure.com/nextgen/r/hWyA_fFOQ2u0NPvESpED9w,rg-omi-build26-azd-env,,ai-account-44mf5lkxqssxm,ai-project-omi-build26-azd-env/build/evaluations/eval_09201956538e459b8773c3502b7f257b/run/evalrun_2e7349902eae416eaa61767db5bbc3b4"
+    },
+    "gpt-5-4-mini": {
+      "status": "completed",
+      "overall": {
+        "total": 62,
+        "passed": 41,
+        "failed": 17,
+        "errored": 4,
+        "skipped": 0
+      },
+      "per_criteria": {
+        "zava_quality": {
+          "passed": 41,
+          "failed": 17,
+          "total": 58
+        },
+        "IntentResolution": {
+          "passed": 0,
+          "failed": 0,
+          "total": 0
+        },
+        "TaskCompletion": {
+          "passed": 0,
+          "failed": 0,
+          "total": 0
+        }
+      },
+      "report_url": "https://ai.azure.com/nextgen/r/hWyA_fFOQ2u0NPvESpED9w,rg-omi-build26-azd-env,,ai-account-44mf5lkxqssxm,ai-project-omi-build26-azd-env/build/evaluations/eval_09201956538e459b8773c3502b7f257b/run/evalrun_a020267b398f4802a85e331113d0addc"
+    }
+  },
+  "best_model": "gpt-5-4"
+}

@@ -1,0 +1,24 @@
+{
+  "eval_id": "eval_6ec63742b5444b5a88761896cfdce254",
+  "file_id": "file-a203bc8d70634dd4a48605e529b9b27c",
+  "runs": {
+    "o4-mini": "evalrun_bba5870bd2664baa950da74b58d3081c",
+    "gpt-4-1": "evalrun_67bd15ceb44b45178178b5fd4563c9d7",
+    "gpt-4-1-mini": "evalrun_688e318538a74394a43baa9ef62ba403",
+    "gpt-4-1-nano": "evalrun_bb2bb7d989d845c18666f8d503ba8886",
+    "gpt-5-4": "evalrun_a0dec4b1f2e648c7b31d7cf254073f26",
+    "gpt-5-4-mini": "evalrun_40616efefc5c4c82bdee2f33119cfd5e"
+  },
+  "file_id_v2": "file-901c8cde92dd474391457dfedf59d75b",
+  "ui_dataset_test_run_id": "evalrun_81a90e149cd44b07adbca6ad95bb5cc5",
+  "ui_dataset_uri": "azureai://accounts/ai-account-44mf5lkxqssxm/projects/ai-project-omi-build26-azd-env/data/omi-dataset-val/versions/1",
+  "foundry_runs": {
+    "o4-mini": "evalrun_d379964dcc434b53a1d361aa658f932c",
+    "gpt-4-1": "evalrun_2203080093a247f9a5c6595c9cfad3af",
+    "gpt-4-1-mini": "evalrun_6d03a957d324423b98695ca1778a02d5",
+    "gpt-4-1-nano": "evalrun_22645b80df2a4bc0a6b49ec8901018b6",
+    "gpt-5-4": "evalrun_43df54b4d5754980a42d25be5c1f3331",
+    "gpt-5-4-mini": "evalrun_64657beb63b349558eb1fa7fc4dc225c"
+  },
+  "dataset_uri": "azureai://accounts/ai-account-44mf5lkxqssxm/projects/ai-project-omi-build26-azd-env/data/omi-dataset-val/versions/1"
+}

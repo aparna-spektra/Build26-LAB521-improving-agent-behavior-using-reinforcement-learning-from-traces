@@ -1,0 +1,81 @@
+{
+  "object": "eval.run",
+  "created_at": 1779817422,
+  "modified_at": 1779818559,
+  "created_by": "Omkar More",
+  "id": "evalrun_d379964dcc434b53a1d361aa658f932c",
+  "eval_id": "eval_6ec63742b5444b5a88761896cfdce254",
+  "status": "completed",
+  "model": null,
+  "data_source": {
+    "type": "azure_ai_target_completions",
+    "input_messages": {
+      "type": "item_reference",
+      "item_reference": "item.messages"
+    },
+    "source": {
+      "type": "file_id",
+      "id": "azureai://accounts/ai-account-44mf5lkxqssxm/projects/ai-project-omi-build26-azd-env/data/omi-dataset-val/versions/1"
+    },
+    "target": {
+      "type": "azure_ai_agent",
+      "name": "zava-next-o4-mini",
+      "version": null,
+      "tool_descriptions": []
+    }
+  },
+  "metadata": {
+    "trigger_type": "oneoff"
+  },
+  "properties": {
+    "eval_id": "eval_6ec63742b5444b5a88761896cfdce254",
+    "NetworkType": "Public",
+    "runType": "eval_run",
+    "_azureml.evaluation_run": "evaluation.service",
+    "_azureml.evaluate_artifacts": "[{\"path\": \"instance_results.jsonl\", \"type\": \"table\"}]",
+    "job_logs": "azureai://accounts/ai-account-44mf5lkxqssxm/projects/ai-project-omi-build26-azd-env/evaluationresults/eval-result-evalrun_d379964dcc434b53a1d361aa658f932c-BPJL/versions/1"
+  },
+  "name": "eval-o4-mini-ui-dataset",
+  "report_url": "https://ai.azure.com/nextgen/r/hWyA_fFOQ2u0NPvESpED9w,rg-omi-build26-azd-env,,ai-account-44mf5lkxqssxm,ai-project-omi-build26-azd-env/build/evaluations/eval_6ec63742b5444b5a88761896cfdce254/run/evalrun_d379964dcc434b53a1d361aa658f932c",
+  "result_counts": {
+    "total": 62,
+    "passed": 28,
+    "failed": 34,
+    "errored": 0,
+    "skipped": 0
+  },
+  "per_model_usage": [
+    {
+      "model_name": "gpt-4.1-2025-04-14",
+      "invocation_count": 124,
+      "total_tokens": 375269,
+      "prompt_tokens": 362268,
+      "completion_tokens": 13001,
+      "cached_tokens": 0
+    }
+  ],
+  "per_testing_criteria_results": [
+    {
+      "testing_criteria": "zava_quality",
+      "passed": 35,
+      "failed": 27,
+      "errored": 0,
+      "skipped": 0
+    },
+    {
+      "testing_criteria": "IntentResolution",
+      "passed": 55,
+      "failed": 7,
+      "errored": 0,
+      "skipped": 0
+    },
+    {
+      "testing_criteria": "TaskCompletion",
+      "passed": 32,
+      "failed": 30,
+      "errored": 0,
+      "skipped": 0
+    }
+  ],
+  "error": null
+}

@@ -1,0 +1,6 @@
+azure-ai-agentserver-responses
+azure-ai-projects
+python-dotenv
+httpx
+azure-identity
+openai

@@ -1,0 +1,14 @@
+name: zava-next-eval
+agent:
+    name: simple-agent
+    kind: hosted
+    version: "4"
+dataset_file: /home/omkarm/build-demos/Build26-LAB521/demo-v2/data/rft_next_val.jsonl
+evaluators:
+    - builtin.intent_resolution
+    - name: smoke-core
+      version: "1"
+      local_uri: evaluators/smoke-core/rubric_dimensions.json
+options:
+    eval_model: gpt-4.1
+max_samples: 62
