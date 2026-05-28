@@ -84,6 +84,7 @@ REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 ENV_FILE="$REPO_ROOT/.env"
 
 cat > "$ENV_FILE" <<EOF
+# Please ensure you have "openai/v1" at the end of the project endpoint
 AZURE_OPENAI_ENDPOINT=$endpoint
 AZURE_OPENAI_API_KEY=$api_key
 EOF
