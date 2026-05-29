@@ -49,7 +49,7 @@ Run the **Load Validation Scenarios** cell to load the 30 held-out scenarios fro
 These scenarios cover all major policy rules and edge cases in the Zava return policy. They are **never** used as training data — only for evaluation.
 
 > [!NOTE]
-> The validation file does not contain `expected_resolution` fields. The next cell generates ground-truth answers by running all 30 scenarios through the trusted `o4-mini` model and caching the results to `data/rft_v7_val_gt.jsonl`. This takes ~15–20 minutes for all 30 scenarios. If the cache file already exists, it loads instantly.
+> The next cell demonstrates generating ground-truth answers by running our 57 validation scenarios through the trusted `gpt-5.4` model and caching the results to `data/rft_v7_val_gt.jsonl`. This takes ~15–20 minutes for all 57 scenarios. If the cache file already exists, it loads instantly.
 
 ## Step 4: Run the Baseline Evaluation
 
