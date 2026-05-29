@@ -1,4 +1,4 @@
-# Part 2 — Baseline Evaluation & The Grader
+# Part 3 — Baseline Evaluation & The Grader
 
 > [!NOTE]
 > **Notebook**: `src/03-baseline-grader.ipynb` | **Estimated time**: ~15 minutes
@@ -15,7 +15,7 @@ In this section, you'll measure how well the base model performs on Zava's retur
 
 ## Step 2: Understand the Grader
 
-The grader is the most important concept in RFT. It replaces the "ideal response" used in supervised fine-tuning with a **scoring function** that evaluates model outputs.
+The grader is the most important concept in RFT. It replaces the "ideal assistant response" used in supervised fine-tuning with a **scoring function** that evaluates model outputs.
 
 Run the **Define the Grader** cell to load the grader function.
 
@@ -44,12 +44,12 @@ The grader returns a float in `[0.0, 1.0]`. A response that gets the action righ
 
 ## Step 3: Load the Validation Scenarios
 
-Run the **Load Validation Scenarios** cell to load the 30 held-out scenarios from `data/rft_v7_val.jsonl`.
+Run the **Load Validation Scenarios** cell to load the 57 held-out scenarios from `data/rft_v7_val.jsonl`.
 
 These scenarios cover all major policy rules and edge cases in the Zava return policy. They are **never** used as training data — only for evaluation.
 
 > [!NOTE]
-> The next cell demonstrates generating ground-truth answers by running our 57 validation scenarios through the trusted `gpt-5.4` model and caching the results to `data/rft_v7_val_gt.jsonl`. This takes ~15–20 minutes for all 57 scenarios. If the cache file already exists, it loads instantly.
+> The next cell demonstrates generating ground-truth answers by running our 57 validation scenarios through the trusted `gpt-5.4` model and caching the results to `data/rft_v7_val_gt.jsonl`. This takes ~15–20 minutes for all scenarios. If the cache file already exists, it loads instantly.
 
 ## Step 4: Run the Baseline Evaluation
 

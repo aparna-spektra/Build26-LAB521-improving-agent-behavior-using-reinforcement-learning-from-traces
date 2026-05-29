@@ -1,4 +1,4 @@
-# Part 1 — Meet the Agent
+# Part 2 — Meet the Agent
 
 > [!NOTE]
 > **Notebook**: `src/02-meet-the-agent.ipynb` | **Estimated time**: ~10 minutes

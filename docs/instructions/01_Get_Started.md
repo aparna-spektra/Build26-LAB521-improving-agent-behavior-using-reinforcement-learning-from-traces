@@ -1,4 +1,4 @@
-# Get started
+# Part 1 - Get started
 
 ## Sign in to Windows
 
@@ -28,7 +28,7 @@ In this workshop, we will be using **Visual Studio Code** as our development env
 This will create a `.env` file in the repo root with values for:
 
 ```
-FOUNDRY_PROJECT_ENDPOINT=https://<resource>.openai.azure.com/openai/v1
+FOUNDRY_PROJECT_ENDPOINT=https://<resource>.services.ai.azure.com/api/projects/<project>
 API_KEY=<your-key>
 ```
 

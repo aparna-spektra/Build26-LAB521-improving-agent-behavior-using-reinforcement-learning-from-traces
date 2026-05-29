@@ -11,7 +11,7 @@ In this lab, you worked through the full RFT workflow on a real agentic task:
 - **Established a baseline** — measured base `o4-mini` at ~73% on validation scenarios and calibrated the pass threshold for optimal RL signal
 - **Built training data** — explored the RFT data format, constructed a custom example, and understood why prompt diversity matters more than volume
 - **Submitted a real RFT job** — uploaded data, embedded the grader, and launched a fine-tuning job on Microsoft Foundry
-- **Evaluated results** — analyzed the reward curve, compared checkpoints, and confirmed a ~73% → ~87% improvement in policy-following accuracy
+- **Evaluated results** — analyzed the reward curve, compared checkpoints, and confirmed a ~73% → ~96% improvement in policy-following accuracy
 
 ## Lab Recap
 
@@ -21,7 +21,7 @@ In this lab, you worked through the full RFT workflow on a real agentic task:
 | **02 – Meet the Agent** | Ran the Zava agent live on 3 scenarios, saw tool calling in action |
 | **03 – Baseline & Grader** | Evaluated base o4-mini (~73%), understood the grader and threshold calibration |
 | **04 – Build Data & Submit** | Explored training data format, built a custom example, submitted an RFT job |
-| **05 – Training Results & Evaluate** | Analyzed reward curves, compared checkpoints, confirmed ~87% fine-tuned accuracy |
+| **05 – Training Results & Evaluate** | Analyzed reward curves, compared checkpoints, confirmed ~96% fine-tuned accuracy |
 
 ## Check Your Submitted Job
 

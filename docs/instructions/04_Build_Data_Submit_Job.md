@@ -1,4 +1,4 @@
-# Part 3 — Build Training Data & Submit a Job
+# Part 4 — Build Training Data & Submit a Job
 
 > [!NOTE]
 > **Notebook**: `src/04-build-data-submit-job.ipynb` | **Estimated time**: ~15 minutes
@@ -105,7 +105,7 @@ We already submitted an RFT job in Microsoft Foundry, to see the job submitted, 
 
 ## Key Takeaways
 
-- RFT training data only needs **prompts + expected answers** — no ideal model responses
+- RFT training data only needs **prompts + expected answers** — no ideal assistant responses
 - **Data diversity** matters more than volume: diverse scenarios generalize better than large paraphrase sets
 - The grader embedded in the job definition is the **same function** used for local evaluation — consistency is critical
 - Jobs are queued; results arrive in **10 hours** — you'll evaluate pre-run results in the next notebook
