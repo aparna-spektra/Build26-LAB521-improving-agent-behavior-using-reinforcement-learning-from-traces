@@ -22,7 +22,7 @@ fi
 # Use the lab resource group directly.
 selected_rg="ResourceGroup1"
 
-rg_info=$(az group show --name "$selected_rg" --query "location" -o tsv 2>/dev/null) || {
+rg_info=$(az group show --name "$selected_rg" --query "location" -o tsv 2>/dev/null | tr -d '\r') || {
   echo "Resource group '$selected_rg' was not found in the current subscription."
   echo "If it is in another subscription, run: az account set --subscription <name-or-id>"
   exit 1
@@ -31,10 +31,14 @@ selected_location="$rg_info"
 
 echo "Using resource group: $selected_rg ($selected_location)"
 
-# Find AIServices / OpenAI accounts in the selected resource group.
-mapfile -t ai_accounts < <(az cognitiveservices account list \
-  --resource-group "$selected_rg" \
-  --query "[?kind=='AIServices' || kind=='OpenAI'].[name]" -o tsv)
+# Find AIServices / OpenAI accounts in the selected resource group using az rest
+# (avoids CLI cognitiveservices module deserialization bugs)
+# tr -d '\r' strips Windows carriage returns from az output
+sub_id=$(az account show --query id -o tsv | tr -d '\r')
+
+mapfile -t ai_accounts < <(az rest --method get \
+  --url "https://management.azure.com/subscriptions/$sub_id/resourceGroups/$selected_rg/providers/Microsoft.CognitiveServices/accounts?api-version=2024-10-01" \
+  --query "value[?kind=='AIServices' || kind=='OpenAI'].name" -o tsv | tr -d '\r')
 
 if [[ ${#ai_accounts[@]} -eq 0 ]]; then
   echo "No AIServices or OpenAI accounts found in resource group '$selected_rg'."
@@ -61,17 +65,23 @@ else
   done
 fi
 
-endpoint=$(az cognitiveservices account show \
-  --name "$selected_name" \
-  --resource-group "$selected_rg" \
-  --query properties.endpoint \
-  -o tsv)
+# Get the base endpoint (e.g., https://dv-wus2.services.ai.azure.com/)
+base_endpoint=$(az rest --method get \
+  --url "https://management.azure.com/subscriptions/$sub_id/resourceGroups/$selected_rg/providers/Microsoft.CognitiveServices/accounts/$selected_name?api-version=2024-10-01" \
+  --query properties.endpoint -o tsv | tr -d '\r')
 
-api_key=$(az cognitiveservices account keys list \
-  --name "$selected_name" \
-  --resource-group "$selected_rg" \
-  --query key1 \
-  -o tsv)
+# Use the account name as the project identifier
+project_name="$selected_name"
+
+echo "Found project: $project_name"
+
+# Build project endpoint: https://<host>.services.ai.azure.com/api/projects/<project-name>
+endpoint="${base_endpoint%/}/api/projects/$project_name"
+
+# Get API key
+api_key=$(az rest --method post \
+  --url "https://management.azure.com/subscriptions/$sub_id/resourceGroups/$selected_rg/providers/Microsoft.CognitiveServices/accounts/$selected_name/listKeys?api-version=2024-10-01" \
+  --query key1 -o tsv | tr -d '\r')
 
 if [[ -z "$endpoint" || -z "$api_key" ]]; then
   echo "Failed to retrieve endpoint or API key from account '$selected_name'."
@@ -84,11 +94,10 @@ REPO_ROOT="$(cd "$SCRIPT_DIR/../.." && pwd)"
 ENV_FILE="$REPO_ROOT/.env"
 
 cat > "$ENV_FILE" <<EOF
-# Please ensure you have "openai/v1" at the end of the project endpoint
-AZURE_OPENAI_ENDPOINT=$endpoint
-AZURE_OPENAI_API_KEY=$api_key
+FOUNDRY_PROJECT_ENDPOINT=$endpoint
+API_KEY=$api_key
 EOF
 
 echo
-echo "Azure OpenAI credentials retrieved for: $selected_name (rg: $selected_rg)"
+echo "AI Foundry project credentials retrieved for: $project_name (account: $selected_name, rg: $selected_rg)"
 echo "Written to $ENV_FILE"
