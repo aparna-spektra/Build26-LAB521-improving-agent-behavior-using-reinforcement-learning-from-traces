@@ -17,7 +17,7 @@ In this section, you'll explore the RFT training data format, construct a custom
 
 Run the **Explore the Data Format** cell to examine a training example from `data/rft_v7_train.jsonl`.
 
-RFT training data is intentionally simpler than SFT data — you only need **prompts**, not ideal responses:
+RFT training data is intentionally simpler than SFT data — you only need **user prompts**, not assistant responses:
 
 ```json
 {
@@ -91,12 +91,12 @@ Run the **Submit the Job** cell to submit your fine-tuning job. The job is confi
 The cell will print your **job ID**. Save it — you'll use it in notebook 05 to check status and in notebook 06 to review your results.
 
 > [!WARNING]
-> RFT jobs are queued and run sequentially per resource. If multiple participants submit at the same time, your job may show `queued` status — this is expected. Jobs typically complete in **6-10 hours**.
+> RFT jobs are queued and run sequentially per resource. If multiple participants submit at the same time, your job may show `queued` status — this is expected. Jobs typically complete in **10 hours**.
 
 We already submitted an RFT job in Microsoft Foundry, to see the job submitted, go to:
 
-1. Go back to browser where you logged in to **Microsoft Foundry** using <[https://ai.azure.com](https://ai.azure.com). Close all the pop ups.
-1. Switch to **New Foundry** by toggling the switch button on the top right.
+1. Go back to browser where you logged in to **Microsoft Foundry** using <[https://ai.azure.com/nextgen](https://ai.azure.com/nextgen). Close all the pop ups.
+1. Switch to **New Foundry** by toggling the switch button on the top right if it is not already toggled.
 1. In the new window, on the top right navigation, select **Build**
 1. On the right side bar, select **Fine Tune**, you will see the jobs you submitted and one previously submitted. Some jobs might actually have been started already, click on the link to the fine tuning job to view any results or outcomes.
 
@@ -108,6 +108,6 @@ We already submitted an RFT job in Microsoft Foundry, to see the job submitted, 
 - RFT training data only needs **prompts + expected answers** — no ideal model responses
 - **Data diversity** matters more than volume: diverse scenarios generalize better than large paraphrase sets
 - The grader embedded in the job definition is the **same function** used for local evaluation — consistency is critical
-- Jobs are queued; results arrive in **2–4 hours** — you'll evaluate pre-run results in the next notebook
+- Jobs are queued; results arrive in **10 hours** — you'll evaluate pre-run results in the next notebook
 
 Click **Next** to explore training results and evaluate the fine-tuned model.

@@ -25,7 +25,7 @@ In this lab, you worked through the full RFT workflow on a real agentic task:
 
 ## Check Your Submitted Job
 
-Your RFT job from notebook 04 will finish in **2–4 hours**. Open `src/06-wrap-up.ipynb` and run the job status cell to check on it. Once it completes, you can deploy the best checkpoint and run the head-to-head evaluation with your own fine-tuned model.
+Your RFT job from notebook 04 will finish in about **10 hours**. Open `src/06-wrap-up.ipynb` and run the job status cell to check on it. Once it completes, you can deploy the best checkpoint and run the head-to-head evaluation with your own fine-tuned model.
 
 ## Next Steps & Experiments
 

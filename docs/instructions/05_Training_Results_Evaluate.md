@@ -6,7 +6,7 @@
 In this section, you'll analyze the training reward curve from a completed RFT run, compare checkpoints, and run a head-to-head evaluation of the fine-tuned model against the base model.
 
 > [!TIP]
-> Your submitted job from notebook 04 will take 2–4 hours to complete. This notebook uses **pre-run results** from an identical experiment so you can see the full training story without waiting. Once your job finishes, you can re-run this notebook with your own results.
+> Your submitted job from notebook 04 can take 10 hours to complete. This notebook uses **pre-run results** from an identical experiment so you can see the full training story without waiting. Once your job finishes, you can re-run this notebook with your own results.
 
 ## Step 1: Open the Notebook
 

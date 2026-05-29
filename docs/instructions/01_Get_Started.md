@@ -28,13 +28,13 @@ In this workshop, we will be using **Visual Studio Code** as our development env
 This will create a `.env` file in the repo root with values for:
 
 ```
-AZURE_OPENAI_ENDPOINT=https://<resource>.openai.azure.com/openai/v1
-AZURE_OPENAI_API_KEY=<your-key>
+FOUNDRY_PROJECT_ENDPOINT=https://<resource>.openai.azure.com/openai/v1
+API_KEY=<your-key>
 ```
 
 ## Login in to Azure 
 
-1. Next, open the edge browser and navigate to <[https://ai.azure.com](https://ai.azure.com)
+1. Next, open the edge browser and navigate to <[https://ai.azure.com/nextgen](https://ai.azure.com/nextgen)
 
 2. Sign-in with the following credentials:
    -  Username: +++@lab.CloudPortalCredential(User1).Username+++
@@ -54,8 +54,8 @@ AZURE_OPENAI_API_KEY=<your-key>
 
 As you work through the cells in `01-introduction-setup.ipynb` in order, you will see:
 
-1. **Install dependencies** — Installs required Python packages (`openai`, `python-dotenv`, `requests`, `matplotlib`, `tabulate`). This may take 1–2 minutes.
-2. **Import libraries and connect to Microsoft Foundry** — Loads your `.env` file and creates an OpenAI client pointed at your Microsoft Foundry endpoint.
+1. **Install dependencies** — Installs required Python packages (`openai`, `python-dotenv`, `requests`, `matplotlib`, `tabulate`, `azure-ai-projects`, `aiohttp`). This may take 1–2 minutes.
+2. **Import libraries and connect to Microsoft Foundry** — Loads your `.env` file and creates an AIProjectClient pointed at your Microsoft Foundry endpoint.
 3. **Verify your environment** — Confirms all required environment variables are set and that the data files exist.
 
 > [!NOTE]
