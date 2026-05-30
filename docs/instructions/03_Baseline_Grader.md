@@ -74,7 +74,7 @@ The goal is a **30–50% failure rate** on the baseline model:
 | Failure rate | Implication |
 |---|---|
 | < 20% | Model already passes most examples — little to learn from |
-| 30–50% | **Ideal range** — strong learning signal without sparse reward |
+| 25–50% | **Ideal range** — strong learning signal without sparse reward |
 | > 60% | Too hard — sparse rewards make convergence slow |
 
 A threshold of **0.80** typically gives a ~35% failure rate on base `o4-mini`, making it the default for this lab.

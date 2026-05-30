@@ -29,7 +29,7 @@ This will create a `.env` file in the repo root with values for:
 
 ```
 FOUNDRY_PROJECT_ENDPOINT=https://<resource>.services.ai.azure.com/api/projects/<project>
-API_KEY=<your-key>
+AZURE_OPENAI_API_KEY=<your-key>
 ```
 
 ## Login in to Azure 

@@ -47,9 +47,9 @@ You'll see something like:
 
 | Checkpoint | Avg Score | P@0.8 (pass rate) |
 |------------|-----------|-------------------|
-| Base o4-mini | ~0.73 | ~60% |
-| Step 95 | ~0.93 | ~80% |
-| Step 115 | ~0.96 | ~90% |
+| Base o4-mini | ~73% | ~60% |
+| Step 95 | ~85% | ~83% |
+| Step 115 | ~87% | ~90% |
 
 > [!NOTE]
 > **Step 115 outperforms Step 95** even though the training log shows Step 95 with a slightly higher train reward in some experiments. This is a common RFT pattern: training-time metrics use a sample of rollouts, while held-out evaluation on the full validation set gives a more reliable signal. **Always re-evaluate checkpoints on full held-out data before choosing the best one.**
@@ -80,16 +80,16 @@ For each scenario, you'll see the raw responses and grader scores side by side. 
 
 | Metric | Base o4-mini | Fine-tuned (Step 115) |
 |--------|-------------|----------------------|
-| Average score | ~73% | **~96%** |
-| Pass rate (P@0.8) | ~60% | **~100%** |
+| Average score | ~73% | **~87%** |
+| Pass rate (P@0.8) | ~60% | **~90%** |
 | Tool call error rate | ~28% | **~7%** |
 
 ## Key Takeaways
 
-- **RFT improved average score from ~73% to ~96%** — a significant gain on policy-following accuracy
+- **RFT improved average score from ~73% to ~87%** — a significant gain on policy-following accuracy
 - **The reward curve confirms learning** — train and validation reward both rise, and tool call errors drop sharply
 - **Step 115 beats Step 95** for this task — always evaluate checkpoints on full held-out data, not just training metrics
-- **P@0.8 jumped from 60% → 100%** — the fine-tuned model now passes the "good" bar on 10 out of 10 scenarios
+- **P@0.8 jumped from 60% → 90%** — the fine-tuned model now passes the "good" bar on 9 out of 10 scenarios
 - **The model didn't need labeled responses** — it discovered correct behavior entirely through trial and error
 
 Click **Next** to wrap up and explore next steps.

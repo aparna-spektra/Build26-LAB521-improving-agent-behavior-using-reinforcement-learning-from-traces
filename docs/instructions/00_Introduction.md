@@ -40,7 +40,7 @@ Zava's customer service team handles a high volume of **return, exchange, and di
 2. Apply a complex return policy with multiple rules (loyalty tiers, product categories, sale flags, late delivery credits, restocking fees, etc.)
 3. Determine the correct resolution — refund, store credit, exchange, or denial — and compute the exact dollar amounts
 
-The base model (`o4-mini`) handles most cases correctly, but struggles with edge cases: it scores around **73%** on the validation set. The goal of this lab is to push that to **96%+** using RFT.
+The base model (`o4-mini`) handles most cases correctly, but struggles with edge cases: it scores around **73%** on the validation set. The goal of this lab is to push that to **87%+** using RFT.
 
 ### Why Reinforcement Fine-Tuning?
 
