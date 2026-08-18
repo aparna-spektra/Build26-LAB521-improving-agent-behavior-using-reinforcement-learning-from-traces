@@ -30,7 +30,7 @@ In this exercise, you will complete the following tasks:
 
 In this task, you will open the baseline grader notebook, load the required environment variables, authenticate to Azure, and connect to the Microsoft Foundry project.
 
-1. In VS Code, navigate to the `src` folder and open the **03-baseline-grader.ipynb** file.
+1. In VS Code, navigate to the `src` **(1)** folder and open the **03-baseline-grader.ipynb (2)** file.
 
    ![](./Image/a22.png)
 
