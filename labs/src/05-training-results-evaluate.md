@@ -642,7 +642,7 @@ In this task, you will load the pre-generated training metrics and create a dash
    - **Reasoning Tokens:** Reasoning-token consumption during training.
    - **Tool Call Errors:** Percentage of invalid or unsuccessful tool calls.
 
-   ![](./Image/a61.png)
+     ![](./Image/a61.png)
 
 ## Task 5: Interpret the training results
 
